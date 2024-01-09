@@ -8,10 +8,12 @@ import { app } from "../app.js";
 import Debug from "debug";
 const debug = Debug(process.env.APP_NAME);
 import http from "http";
-
+import { sequelize } from "../db.js";
 /**
  * Get port from environment and store in Express.
  */
+await sequelize.sync({ force: true });
+console.log("All models were synchronized successfully.");
 
 var port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
